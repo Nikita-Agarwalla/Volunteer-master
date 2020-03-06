@@ -1,0 +1,180 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+
+        .w3-container {
+            margin-top: 50px;
+            /*display:flex;
+            justify-items:flex-end;*/
+        }
+
+        header {
+            text-align: center;
+        }
+
+        .w3-card {
+            display: flex;
+            flex-direction: column;
+            padding: 50px 20px 50px 80px;
+        }
+
+        .blue {
+            background-color: rgb(118, 205, 216);
+        }
+
+        input {
+            padding-right: 1px;
+        }
+
+        .time {
+            padding-left: 1px;
+            padding-right: 10px;
+        }
+
+        /*font-face {
+            font-family: blanch;
+            src: url('BLANCH_CAPS_INLINE.otf') format('embedded-opentype');
+        }
+        font-face{
+            font-family: blanch;
+            src: local('./fonts/BLANCH_CAPS_INLINE.ttf');
+        }*/
+
+        header {
+            font-family: 'blanch';
+            font-style: normal;
+            font-weight: 300;
+        }
+    </style>
+</head>
+
+<body style="background-color:#dadada">
+    <div class="w3-container"  >
+
+        <header class="w3-container blue">
+            <h1>Create Event</h1>
+        </header>
+
+        <div class="w3-panel w3-card" style="background-color:white">
+
+            <form>
+                <div class="w3-row">
+                    <div class="form-group col-md-6 nopadding">
+                        <div class="form-group">
+                            <label for="EventName">Event Name:</label>
+                            <input type="text" class="form-control" id="name" placeholder="Event Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="EventVenue">Event Venue:</label>
+                            <input type="text" class="form-control" id="venue" placeholder="Event Venue" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="EventDate">Event Date:</label>
+                            <input type="date" class="form-control" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 time">
+                                <label for="EventTime">Event Start Time:</label>
+                                <input type="time" class="form-control" id="time" placeholder="Enter Event Time" name="time" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 time">
+                                <label for="EventTime">Event End Time:</label>
+                                <input type="time" class="form-control" id="time" placeholder="Enter Event Time" name="time" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 ">
+                        <div class="form-group">
+                            <label for="Description">Description:</label>
+                            <textarea class="form-control" id="description" placeholder="Enter event description" rows="7" draggable="false" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-file">
+                                <label for="poster-upload" class="custom-file-upload">
+                                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                                    Upload Poster
+                                </label>
+                                <input id="poster-upload" type="file" accept="image/*" />
+                                <span id="file-name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-file">
+                                <label for="file-upload" class="custom-file-upload">
+                                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                                    Upload File
+                                </label>
+                                <input id="file-upload" type="file" accept=".csv, .xlsx, .xls, .csv" onchange="checkfile(this);" />
+                                <span id="file-name1"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+
+            $('#poster-upload').change(function (e) {
+
+                var fileName = e.target.files[0].name;
+
+                $("#file-name").html(fileName)
+
+            });
+            $('#file-upload').change(function (e) {
+
+                var fileName = e.target.files[0].name;
+
+                $("#file-name1").html(fileName)
+
+            });
+
+        });
+
+    </script>
+    <script type="text/javascript" language="javascript">
+        function checkfile(sender) {
+            var validExts = new Array(".xlsx", ".xls", ".csv");
+            var fileExt = sender.value;
+            fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+            if (validExts.indexOf(fileExt) < 0) {
+                alert("Invalid file selected, valid files are of " +
+                    validExts.toString() + " types.");
+                return false;
+            }
+            else return true;
+        }
+    </script>
+</body>
+</html>
+
